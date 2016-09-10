@@ -1,0 +1,22 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "aprendiendo Nodejs",
+  "main": "apps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sservicetk20/CursoNodejs.git"
+  },
+  "author": "david",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sservicetk20/CursoNodejs/issues"
+  },
+  "homepage": "https://github.com/sservicetk20/CursoNodejs#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
