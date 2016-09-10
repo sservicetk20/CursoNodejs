@@ -1,0 +1,12 @@
+extends ./layout.jade
+block contenido
+ form(action="/users",method="POST")
+  div
+    label(for="email") Email
+    input(type="text", name="email",placeholder="Email")
+  div
+    label(for="email") Contraseña
+    input(type="text", name="contraseña",placeholder="Contraseña")
+  div
+    input(type="submit" value="Iniciar Sesión")
+    input(type="reset" value="Cancelar")
