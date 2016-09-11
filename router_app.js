@@ -34,8 +34,12 @@ router.route("/productos/:id")
     
 router.route("/productos")
     .get(function(req,res){
-        
+        Producto.find({},function(err,productos){
+           if(err){ res.redirect("/app");return; }
+           res.render("app/productos/index",{ productos: productos }); 
+        });
     })
+    
      .post(function(req,res){
         var data = {
             title: req.body.title
