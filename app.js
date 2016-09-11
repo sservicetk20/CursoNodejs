@@ -1,19 +1,9 @@
 var express = require("express");
 var bodyParser = require("body-parser");//para peticiones al servidor
+var User = require("./models/user").User; //treyendo modelo user = BaseDeDatos
+
 var app = express();
-var mongoose = require("mongoose"),
-    Schema = mongoose.Schema; //lo usamos para definir los datos de la base de datos como un objeto json
 
-mongoose.connect("mongodb://localhost/App");
-
-var userSchemaJSON = {
-  email:String,
-  password:String
-};
-
-var user_schema = new Schema(userSchemaJSON);
-
-var User = mongoose.model("User",user_schema);
 
 // montar el middleware pasar el middleware como paremetro al metodo app
 // podemos observar todo lo que este dentro de la carpeta public
@@ -26,26 +16,42 @@ app.use(bodyParser.urlencoded( {extends: true} ));
 app.set("view engine", "jade");
 
 app.get("/",function(req,res){
-    res.render("index");
+    res.render("index",{title: "Sistema de Ingreso"});
+});
+
+app.get("/signup",function(req,res){
+    User.find(function(err,doc){
+       console.log(doc);
+       res.render("signup"); 
+    });
 });
 
 app.get("/login",function(req,res){
-    User.find(function(err,doc){
-        console.log(doc);
        res.render("login"); 
-    });
 });
 
 app.post("/users",function(req,res){
     var user = new  User({
         email: req.body.email, 
-        password: req.body.password
+        password: req.body.password,
+        password_confirmation: req.body.password_confirmation,
+        username: req.body.username
     });
+   
+   user.save().then(function(us){
+       res.send("Guardamos el usuario exitosamente");
+   }),function(err){
+       console.log(String(err));
+       res.send("no pudimos guardar la informacion");
+   }
     
-    user.save(function(){
-        res.send("recibimos tus datos");    
+});
+
+app.post("/sessions",function(req,res){
+    User.findOne({email:req.body.email,password:req.body.password},function(err,docs){
+        console.log(docs);
+        res.send("hola Bienvenido");
     });
-    
 });
 
 
