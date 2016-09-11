@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");//para peticiones al servidor
 var User = require("./models/user").User; //treyendo modelo user = BaseDeDatos
-var session = require("express-session");
+var cookieSession = require("cookie-session");
 var router_app = require("./router_app");
 var session_middleware = require("./middlewares/session")
 
@@ -18,10 +18,9 @@ app.use(bodyParser.urlencoded( {extends: true} ));
 
 /*rutas modulares*/
 
-app.use(session({
-    secret: "123yuhbsdah12ub",
-    resave: false,
-    saveUninitialized: false
+app.use(cookieSession({
+    name: "session",
+    keys: ["llave-1","llave-2"]
 }));
 
 app.set("view engine", "jade");

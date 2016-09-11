@@ -34,3 +34,10 @@ sirve para traer el archivo user de la carpeta models el cual contiene la base d
 var User = require("./models/user").User;
 
 ```
+
+```
+NodeMon
+
+sirve para que el servidor se actualize solo sin nesecidad de estar reseteando el servidor
+
+```

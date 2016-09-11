@@ -1,0 +1,18 @@
+extends ../../layout.jade
+block contenido
+ h1 Subir nuevo producto
+ form(action="/app/productos",method="POST")
+  div
+    label(for="title") Titulo
+    input(type="text", name="title",id ="title",placeholder="Titulo del producto")
+  div
+    label(for="archivo") Descrpcion
+    input(type="text", name="archivo",id ="archivo",placeholder="Descrpcion del producto")
+   div
+    label(for="precio") Precio
+    input(type="text", name="precio",id ="precio",placeholder="precio del producto")
+ 
+  div(class="row")
+   div(class="col-xs-12 col-sm-6")
+    input(type="submit" value="Guardar")
+    input(type="reset" value="Cancelar")
