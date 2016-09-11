@@ -1,0 +1,10 @@
+extends ../../layout.jade
+block contenido
+ h1 Editar Productos
+ form(action="/app/productos/#{producto.id}?_method=PUT" method="POST")
+  div
+    label(for="title") Titulo
+    input(type="text", name="title",id ="title",placeholder="Titulo del producto",value="#{producto.title}")
+  div(class="row")
+   div(class="col-xs-12 col-sm-6")
+    input(type="submit" value="Guardar")

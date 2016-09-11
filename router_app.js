@@ -15,7 +15,9 @@ router.get("/productos/new",function(req,res){
 });
 
 router.get("/productos/:id/edit",function(req,res){
-    
+      Producto.findById(req.params.id,function(err,producto){
+           res.render("app/productos/edit", { producto:producto });
+        })
 });
 
 
@@ -26,7 +28,17 @@ router.route("/productos/:id")
         })
     })
      .put(function(req,res){
-        
+        Producto.findById(req.params.id,function(err, producto) {
+            producto.title = req.body.title;
+            producto.save(function(err){
+                if(!err){
+                    res.render("app/productos/show",{producto:producto});
+                }else{
+                     res.render("app/productos/"+producto.id+"/edit",{producto:producto});
+                }
+            })
+            res.render("app/productos/show", { producto:producto });
+        })
     })
      .delete(function(req,res){
         
@@ -36,7 +48,7 @@ router.route("/productos")
     .get(function(req,res){
         Producto.find({},function(err,productos){
            if(err){ res.redirect("/app");return; }
-           res.render("app/productos/index",{ productos: productos }); 
+           res.render("app/productos/index",{productos: productos }); 
         });
     })
     
