@@ -13,7 +13,7 @@
 7.body-parser 
 8.se instalo base de datos mongoose
 9.mongoose realizar consultas a la base de datos de una forma mas sencilla
-
+10.express-session manejar seciones con express
 ```
 
 ```

@@ -1,6 +1,9 @@
 var express = require("express");
 var bodyParser = require("body-parser");//para peticiones al servidor
 var User = require("./models/user").User; //treyendo modelo user = BaseDeDatos
+var session = require("express-session");
+var router_app = require("./router_app");
+var session_middleware = require("./middlewares/session")
 
 var app = express();
 
@@ -13,9 +16,18 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( {extends: true} ));
 
+/*rutas modulares*/
+
+app.use(session({
+    secret: "123yuhbsdah12ub",
+    resave: false,
+    saveUninitialized: false
+}));
+
 app.set("view engine", "jade");
 
 app.get("/",function(req,res){
+    console.log(req.session.user_id);
     res.render("index",{title: "Sistema de Ingreso"});
 });
 
@@ -48,11 +60,13 @@ app.post("/users",function(req,res){
 });
 
 app.post("/sessions",function(req,res){
-    User.findOne({email:req.body.email,password:req.body.password},function(err,docs){
-        console.log(docs);
-        res.send("hola Bienvenido");
+    User.findOne({email:req.body.email,password:req.body.password},function(err,user){
+        req.session.user_id = user._id;
+        res.send("hola mundo");
     });
 });
 
+app.use("/app",session_middleware)
+app.use("/app",router_app);
 
 app.listen(8080);
