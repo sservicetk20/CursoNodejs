@@ -1,3 +1,0 @@
-git add .                      #Puedes registrar cambios (añadirlos al Index) 
-git commit -m "Commit message" #Este es el primer paso en el flujo de trabajo básico. Para hacer commit a estos cambios usa
-git push origin master         #Tus cambios están ahora en el HEAD de tu copia local. Para enviar estos cambios a tu repositorio remoto ejecuta 
