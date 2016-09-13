@@ -41,7 +41,14 @@ router.route("/productos/:id")
         })
     })
      .delete(function(req,res){
-        
+        Producto.findOneAndRemove({_id:req.params.id},function(err){
+            if(!err){
+                res.redirect("/app/productos");
+            }else{
+                console.log(err);
+                res.redirect("app/productos"+req.params.id)
+            }
+        })
     });
     
 router.route("/productos")

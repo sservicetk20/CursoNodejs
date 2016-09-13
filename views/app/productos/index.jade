@@ -8,4 +8,5 @@ block contenido
      h2=producto.title
     .col-md-2
      a(href="/app/productos/#{producto._id}/edit") Editar
-     a(href="/app/productos/#{producto._id}/") Eliminar
+     form(action="/app/productos/#{producto._id}?_method=DELETE",class="Link",method="POST")
+      input(type="submit",value="Eliminar")
