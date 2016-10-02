@@ -13,3 +13,20 @@ form.Link:hover {
      text-decoration: underline;
      color:rgb(200,50,50);
 }
+img{
+    max-width: 100%;
+}
+.img-container{
+    width: 250px;
+    max-width: 100%;
+    margin:0 auto;
+}
+.img-container h1,.img-container h2{
+    padding: 15px;
+    border-bottom:1px solid #323232;
+}
+.img-container p {
+    text-align:center;
+    font-size:1.2em;
+    margin-top:1em;
+}

@@ -1,5 +1,7 @@
 extends ../../layout.jade
 block contenido
- h1= producto.title
- if(typeof producto.creator != "undefined")
-   p subido por el usuario #{producto.creator.email}
+ div(class="img-container")
+  h1= producto.title
+  img(src="imagenes/#{producto._id}.#{producto.extension}",class="main-img")
+  if(typeof producto.creator != "undefined")
+    p subido por el usuario #{producto.creator.email}

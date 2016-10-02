@@ -1,13 +1,18 @@
 var express = require("express");
 var Producto = require("./models/productos");
 var router = express.Router();
+var fs = require("fs");
 
 var producto_finder_middleware = require("./middlewares/find_producto");
 
 router.get("/",function(req,res){
-    res.render("app/home",{title: "Sistema de Ingreso"})
+    Producto.find({})
+     .populate("creator")
+     .exec(function(err,productos){
+         if(err) console.log(err);
+         res.render("app/home",{ productos: productos });
+     })
 });
-
 
 /*
     REST
@@ -62,14 +67,17 @@ router.route("/productos")
     })
     
      .post(function(req,res){
-        console.log("el id del usuario que registro el producto" + " : " + res.locals.user._id);
+       console.log(req.body.archivo);
+        var extension = req.body.archivo.name.split(".").pop();
         var data = {
             title: req.body.title,
-            creator: res.locals.user._id
+            creator: res.locals.user._id,
+            extension: extension
         }
         var producto = new Producto(data);
         producto.save(function(err){
             if(!err){
+                fs.rename(req.body.archivo.path, "public/imagenes/"+producto._id+"."+extension);
                 res.redirect("/app/productos/"+producto._id)
             }
             else{
