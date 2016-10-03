@@ -19,10 +19,10 @@ img{
 .img-container{
     width: 250px;
     max-width: 100%;
-    margin:0 auto;
 }
-.img-container h1,.img-container h2{
-    padding: 15px;
+.img-container h1,.img-container h2,.img-container h3{
+    margin:0 auto;
+    padding: 20px;
     border-bottom:1px solid #323232;
 }
 .img-container p {

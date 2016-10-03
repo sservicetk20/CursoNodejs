@@ -1,11 +1,12 @@
 var express = require("express");
 var bodyParser = require("body-parser");//para peticiones al servidor
 var User = require("./models/user").User; //treyendo modelo user = BaseDeDatos
-var cookieSession = require("cookie-session");
+var session = require("express-session");
 var router_app = require("./router_app");
 var session_middleware = require("./middlewares/session");
 var methodOverride = require("method-override");
 var formidable = require("express-formidable");
+var RedisStore = require("connect-redis")(session);
 
 var app = express();
 
@@ -22,10 +23,12 @@ app.use(methodOverride("_method"))
 
 /*rutas modulares*/
 
-app.use(cookieSession({
-    name: "session",
-    keys: ["llave-1","llave-2"]
-}));
+var sessionMiddleware = session({
+    store: new RedisStore({}),
+    secret: "secreto"
+});
+    
+app.use(sessionMiddleware);
 
 app.use(formidable.parse({ keepExtensions: true }));
 

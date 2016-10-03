@@ -41,3 +41,11 @@ NodeMon
 sirve para que el servidor se actualize solo sin nesecidad de estar reseteando el servidor
 
 ```
+
+```
+
+sudo service redis-server start
+redis-cli
+
+
+```

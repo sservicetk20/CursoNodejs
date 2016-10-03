@@ -1,8 +1,8 @@
 extends ../layout.jade
 block contenido
  for producto in productos
-    div(class="img-container text-center")
-      h2= producto.title
+    div(class="img-container")
+      h3= producto.title
       img(src="imagenes/#{producto._id}.#{producto.extension}",class="main-img")
       if(typeof producto.creator != "undefined")
       p Por #{producto.creator.email}
