@@ -24,6 +24,10 @@ router.get("/productos/new",function(req,res){
     res.render("app/productos/new")
 });
 
+router.get("/productos/opciones",function(req,res){
+    res.render("app/productos/opciones")
+});
+
 router.all("/productos/:id*",producto_finder_middleware);
 
 router.get("/productos/:id/edit",function(req,res){

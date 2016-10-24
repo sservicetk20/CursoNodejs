@@ -1,20 +1,22 @@
 extends ./layout.jade
 block contenido
- form(action="/users",method="POST")
-  div
-    label(for="email") Email
-    input(type="text", name="email",placeholder="Email")
-  div
-    label(for="password") Contraseña
-    input(type="password", name="password",placeholder="Contraseña")
-  div
-    label(for="password") Confirma Contraseña
-    input(type="password", name="password_confirmation",placeholder="confirmar Contraseña")
-  div
-    label(for="username") Nombre de usuario
-    input(type="text", name="username",placeholder="nombre de usuario")
-  div
-    input(type="submit" value="Iniciar Sesión")
-    input(type="reset" value="Cancelar")
-  div(class="col-xs-12 col-sm-6")
-    a(href="/login") Ya Tengo Una Cuenta
+ div(class="col-md-6 remove-float center-block big-top-space")
+   form(action="/users",method="POST")
+    div(class="form-group")
+      label(for="email") Email
+      input(type="text", name="email",placeholder="Email",class="form-control")
+    div(class="form-group")
+      label(for="password") Contraseña
+      input(type="password", name="password",placeholder="Contraseña" class="form-control")
+    div(class="form-group")
+      label(for="password") Confirma Contraseña
+      input(type="password", name="password_confirmation",placeholder="confirmar Contraseña" class="form-control")
+    div(class="form-group")
+      label(for="username") Nombre de usuario
+      input(type="text", name="username",placeholder="nombre de usuario" class="form-control")
+    div(class="row top-space")
+     div(class="col-xs-12 col-sm-6")
+      input(type="submit" value="Iniciar Sesión" class="btn btn-info")
+      input(type="reset" value="Cancelar" class="btn btn-danger")
+    div(class="col-xs-12 col-sm-6")
+      a(href="/login") Ya Tengo Una Cuenta
